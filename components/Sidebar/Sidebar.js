@@ -12,8 +12,12 @@ function Sidebar() {
   console.log("userName", userName);
 
   return (
-    <div className="h-screen w-[300px] flex flex-col items-center bg-slate-300 ">
-      <div className="flex flex-col bg-slate-500 w-full items-center">
+    <div className="h-screen w-[300px] flex flex-col items-center bg-blue-500 ">
+      <div className="flex flex-col items-center pt-10">
+        <Image src={"/logo.png"} width={200} height={200} />
+        <p className="text-2xl font-bold text-white">The American Games</p>
+      </div>
+      <div className="flex flex-col bg-red-500 w-full items-center p-6 mt-6 rounded-xl">
         <div className="py-6 flex flex-col items-center">
           {isAuthenticated ? (
             <>
@@ -34,24 +38,24 @@ function Sidebar() {
           {isAuthenticated && !userName ? (
             <div className="flex flex-col p-2 items-center">
               <input
-                className="w-[250px] h-8 p-2 rounded-md  outline-none bg-blue-600 hover:bg-blue-400 duration-200 placeholder:text-white text-center "
+                className="w-[250px] h-8 p-2 rounded-md  outline-none bg-blue-600 hover:bg-blue-200 duration-200 placeholder:text-white text-center "
                 type="text"
                 value={nickName}
-                placeholder="Username...."
+                placeholder="Add Username"
                 onChange={(e) => setNickName(e.target.value)}
               />
               <div className="p-2">
                 <button
-                  className="border border-transparent rounded-md bg-red-500 outline-none px-2 round text-white hover:bg-blue-800 duration-150"
+                  className="border-2  rounded-md bg-red-500 outline-none px-4 round text-white hover:bg-blue-500 duration-150"
                   onClick={handleNickName}
                 >
-                  Add Username
+                  Submit
                 </button>
               </div>
             </div>
           ) : (
             <div className="p-2">
-              <p className="text-xl text-white">{userName}</p>
+              <p className="text-xl text-white">Welcome {userName}</p>
             </div>
           )}
         </div>
