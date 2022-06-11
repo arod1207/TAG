@@ -30,7 +30,7 @@ export function UserProvider({ children }) {
 
   useEffect(() => {
     handleCheckUserName();
-  });
+  }, [isAuthenticated, user]);
 
   const handleNickName = () => {
     if (user && nickName) {

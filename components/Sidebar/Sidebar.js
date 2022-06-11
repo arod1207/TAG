@@ -12,12 +12,12 @@ function Sidebar() {
   console.log("userName", userName);
 
   return (
-    <div className="h-screen w-[300px] flex flex-col items-center bg-blue-500 drop-shadow-2xl ">
+    <div className="h-full min-w-[300px] flex flex-col items-center bg-blue-600 rounded-b-xl">
       <div className="flex flex-col items-center pt-10">
         <Image src={"/logo.png"} width={200} height={200} />
         <p className="text-2xl font-bold text-white">The American Games</p>
       </div>
-      <div className="flex flex-col bg-red-500 w-full items-center p-6 mt-6 rounded-xl">
+      <div className="flex flex-col bg-red-500 w-full items-center p-6 mt-6 rounded-xl border-2 border-[#F59E0B]">
         <div className="py-6 flex flex-col items-center">
           {isAuthenticated ? (
             <>
@@ -59,6 +59,12 @@ function Sidebar() {
             </div>
           )}
         </div>
+      </div>
+      <div className="flex flex-col items-center p-6">
+        <Image src={"/spinwheel.png"} width={150} height={150} />
+        <p className="text-white text-center text-lg font-semibold pt-2">
+          Live Drawings Every Wednsday on telegram
+        </p>
       </div>
     </div>
   );
