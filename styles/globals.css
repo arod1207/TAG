@@ -5,5 +5,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 body {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 92, 191, 1) 0%,
+    rgba(251, 0, 0, 1) 100%
+  );
+
   font-family: "Montserrat", sans-serif;
 }

@@ -12,7 +12,7 @@ function Sidebar() {
   console.log("userName", userName);
 
   return (
-    <div className="h-screen w-[300px] flex flex-col items-center bg-blue-500 ">
+    <div className="h-screen w-[300px] flex flex-col items-center bg-blue-500 drop-shadow-2xl ">
       <div className="flex flex-col items-center pt-10">
         <Image src={"/logo.png"} width={200} height={200} />
         <p className="text-2xl font-bold text-white">The American Games</p>
