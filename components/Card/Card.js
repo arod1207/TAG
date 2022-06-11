@@ -3,16 +3,19 @@ import Image from "next/image";
 function Card() {
   const cardData = [
     {
+      id: 1,
       img: "/Macbook.webp",
       title: "MacBook Pro",
       price: 1000,
     },
     {
+      id: 2,
       img: "/bnb.png",
       title: "1 BNB",
       price: 5000,
     },
     {
+      id: 3,
       img: "/Macbook.webp",
       title: "MacBook Pro",
       price: 1000,
@@ -22,7 +25,10 @@ function Card() {
   return (
     <>
       {cardData.map((card) => (
-        <div className="border-2 border-[#F59E0B] w-[300px] h-[300px] flex flex-col items-center rounded-b-2xl m-6 ">
+        <div
+          key={card.id}
+          className="border-2 border-[#F59E0B] w-[300px] h-[300px] flex flex-col items-center rounded-b-2xl m-6 "
+        >
           <div>
             <Image
               className="object-fill transition"
