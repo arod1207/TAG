@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
 
-import Image from "next/image";
 import UserContext from "../../Context/UserContext/UserContext";
 
+import Image from "next/image";
+
+import { Telegram } from "react-bootstrap-icons";
 import { ConnectButton } from "web3uikit";
 
 function Sidebar() {
@@ -63,7 +65,13 @@ function Sidebar() {
       <div className="flex flex-col items-center p-6">
         <Image src={"/spinwheel.png"} width={150} height={150} />
         <p className="text-white text-center text-lg font-semibold pt-2">
-          Live Drawings Every Wednsday on telegram
+          Live Drawings Every Wednsday on Telegram
+        </p>
+        <p>
+          <Telegram
+            className="text-white hover:text-slate-400 hover:cursor-pointer"
+            size={32}
+          />
         </p>
       </div>
     </div>

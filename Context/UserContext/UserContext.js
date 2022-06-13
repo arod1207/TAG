@@ -20,17 +20,20 @@ export function UserProvider({ children }) {
 
   const handleCheckUserName = async () => {
     const currentUserName = await user?.get("nickname");
-
-    if (currentUserName === null) {
-      return;
-    } else {
-      setUserName(currentUserName);
-    }
+    setUserName(currentUserName);
   };
 
   useEffect(() => {
     handleCheckUserName();
   }, [isAuthenticated, user]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      handleCheckUserName();
+    } else {
+      console.log("Not Authenticated");
+    }
+  }, []);
 
   const handleNickName = () => {
     if (user && nickName) {
@@ -41,14 +44,6 @@ export function UserProvider({ children }) {
       console.log("Cant set an empty nickname");
     }
   };
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      console.log("Authenticated");
-    } else {
-      console.log("Not Authenticated");
-    }
-  });
 
   return (
     <UserContext.Provider
