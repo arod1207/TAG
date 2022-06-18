@@ -1,59 +1,67 @@
 import { createContext, useState, useEffect } from "react";
-import { useMoralis, useNewMoralisObject } from "react-moralis";
+import {
+  useMoralis,
+  useNewMoralisObject,
+  useWeb3ExecuteFunction,
+} from "react-moralis";
+
+import { ethers } from "ethers";
+import { tagABI, tagTokenAddress } from "../../lib/constants";
 
 const UserContext = createContext();
 
 export function UserProvider({ children }) {
   const {
     authenticate,
+    Moralis,
     isAuthenticated,
+    enableWeb3,
+    isWeb3Enabled,
     isAuthenticating,
     user,
     account,
     logout,
   } = useMoralis();
 
-  const [userName, setUserName] = useState("");
-  const [nickName, setNickName] = useState("");
-
-  console.log("user", user);
-
-  const handleCheckUserName = async () => {
-    const currentUserName = await user?.get("nickname");
-    setUserName(currentUserName);
-  };
+  console.log(isWeb3Enabled);
+  console.log(enableWeb3);
+  const contractProcessor = useWeb3ExecuteFunction();
 
   useEffect(() => {
-    handleCheckUserName();
-  }, [isAuthenticated, user]);
+    if (isAuthenticated && isWeb3Enabled) {
+      console.log("Authenticated");
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      handleCheckUserName();
+      enableWeb3();
     } else {
       console.log("Not Authenticated");
     }
-  }, []);
+  }, [isAuthenticated, user]);
 
-  const handleNickName = () => {
-    if (user && nickName) {
-      user.set("nickname", nickName);
-      user.save();
-      setNickName("");
-    } else {
-      console.log("Cant set an empty nickname");
-    }
+  const buyTokens = async (val) => {
+    let options = {
+      contractAddress: "0x484B7ac9b4D5DD04755da583bc129a4b290823aC",
+      functionName: "mint",
+      abi: [
+        {
+          inputs: [
+            { internalType: "uint256", name: "amount", type: "uint256" },
+          ],
+          name: "mint",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+      ],
+      msgValue: val,
+    };
+    await contractProcessor.fetch({ params: options });
   };
 
   return (
     <UserContext.Provider
       value={{
         isAuthenticated,
-        userName,
-        setUserName,
-        nickName,
-        setNickName,
-        handleNickName,
+        buyTokens,
       }}
     >
       {children}

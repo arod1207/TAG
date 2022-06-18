@@ -1,4 +1,5 @@
 import { UserProvider } from "../Context/UserContext/UserContext";
+import { ContractProvider } from "../Context/ContractContext/ContractContext";
 import { MoralisProvider } from "react-moralis";
 
 import "../styles/globals.css";
